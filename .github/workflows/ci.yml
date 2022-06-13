@@ -1,0 +1,22 @@
+name: Leovegas code testing - CI
+on: push
+
+jobs:
+  lint:
+    name: ESLint check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Git - Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup nodejs running environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install node modules
+        run: npm install
+
+      - name: Run ESLint check
+        run: npm run lint
