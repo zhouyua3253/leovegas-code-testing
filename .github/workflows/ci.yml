@@ -1,4 +1,4 @@
-name: Leovegas code testing - CI
+name: Leovegas code testing - CD
 on: push
 
 jobs:
