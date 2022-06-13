@@ -18,8 +18,8 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install node modules, "dependencies" only
-        run: npm ci --production
+      - name: Install node modules
+        run: npm ci
 
       - name: Run build
         run: npm run build
