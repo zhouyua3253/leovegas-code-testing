@@ -1,6 +1,13 @@
 import Head from "next/head";
+import { GetStaticProps } from "next";
+import { discoverMovies } from "@Services/movieServices";
+import { MovieModel } from "@Models/movieModel";
 
-export default function HomePage() {
+interface HomePageProps {
+  movies: Array<MovieModel>;
+}
+
+export default function HomePage({ movies }: HomePageProps) {
   return (
     <div>
       <Head>
@@ -9,9 +16,21 @@ export default function HomePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="h-20 bg-emerald-300">main</main>
+      <main className="bg-emerald-300">
+        {movies.map((movie) => (
+          <div key={movie.id}>{movie.original_title}</div>
+        ))}
+      </main>
 
       <footer>footer</footer>
     </div>
   );
 }
+
+export const getStaticProps: GetStaticProps<HomePageProps> = async (
+  context
+) => {
+  const movies = await discoverMovies();
+
+  return { props: { movies: movies.results } };
+};
