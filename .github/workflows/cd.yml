@@ -1,5 +1,8 @@
-name: Leovegas code testing - CD
-on: push
+name: Leovegas code testing - CI
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   lint:
@@ -15,8 +18,8 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install node modules
-        run: npm ci
+      - name: Install node modules, "dependencies" only
+        run: npm ci --production
 
-      - name: Run ESLint check
-        run: npm run lint
+      - name: Run build
+        run: npm run build
