@@ -13,13 +13,10 @@ jobs:
       - name: Git - Checkout
         uses: actions/checkout@v3
 
-      - name: Setup nodejs running environment
-        uses: actions/setup-node@v3
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          node-version: 16
-
-      - name: Install node modules
-        run: npm ci
-
-      - name: Run build
-        run: npm run build
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
