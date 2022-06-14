@@ -1,4 +1,4 @@
-## This is a code testing for Leovegas
+## This is a code testing repo
 
 ### Technical Skills
 
@@ -25,7 +25,7 @@
 
 ### [Online demo](https://code-testing-yumin.herokuapp.com)
 
-[The website](https://code-testing-yumin.herokuapp.com) is deployed to Heroku with Docker.
+[The demo website](https://code-testing-yumin.herokuapp.com) is deployed to Heroku with Docker.
 
 ### CI/CD GitHub actions
 
