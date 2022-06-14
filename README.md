@@ -10,7 +10,7 @@
 - Posters and trailers are always nice, this is however up to you.(Optional)
 - Last but definitely NOT least, please include a Demo for us to see.
 
-### Online demo
+### [Online demo](https://code-testing-yumin.herokuapp.com)
 
-The website is deployed to [Heroku](https://code-testing-yumin.herokuapp.com) with Docker.
+[The website](https://code-testing-yumin.herokuapp.com) is deployed to Heroku with Docker.
 
