@@ -25,7 +25,8 @@
 
 ### [Online demo](https://code-testing-yumin.herokuapp.com)
 
-[The demo website](https://code-testing-yumin.herokuapp.com) is deployed to Heroku with Docker.
+[The demo website](https://code-testing-yumin.herokuapp.com) is deployed to Heroku with Docker. It may take 10 - 15
+seconds to load the website content due to Heroku cold start.
 
 ### CI/CD GitHub actions
 
