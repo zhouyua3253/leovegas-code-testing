@@ -2,6 +2,7 @@ import Head from "next/head";
 import { GetStaticProps } from "next";
 import { discoverMovies } from "@Services/movieServices";
 import { MovieModel } from "@Models/movieModel";
+import MovieCard from "@Components/MovieCard";
 
 interface HomePageProps {
   movies: Array<MovieModel>;
@@ -16,10 +17,15 @@ export default function HomePage({ movies }: HomePageProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="bg-emerald-300">
-        {movies.map((movie) => (
-          <div key={movie.id}>{movie.original_title}</div>
-        ))}
+      <main>
+        <ul
+          role="grid"
+          className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-4"
+        >
+          {movies.map((movie) => (
+            <MovieCard movie={movie} key={movie.id} as="li" role="gridcell" />
+          ))}
+        </ul>
       </main>
 
       <footer>footer</footer>
@@ -30,7 +36,7 @@ export default function HomePage({ movies }: HomePageProps) {
 export const getStaticProps: GetStaticProps<HomePageProps> = async (
   context
 ) => {
-  const movies = await discoverMovies();
+  const data = await discoverMovies();
 
-  return { props: { movies: movies.results } };
+  return { props: { movies: data.results } };
 };
