@@ -6,7 +6,7 @@ on:
 
 jobs:
   lint:
-    name: ESLint check
+    name: Testing
     runs-on: ubuntu-latest
 
     steps:
@@ -23,3 +23,6 @@ jobs:
 
       - name: Run ESLint check
         run: npm run lint
+
+      - name: Run Jest
+        run: npm run jest
