@@ -3,6 +3,7 @@ import MovieCard from "./MovieCard";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import dayjs from "dayjs";
+import { generate as random } from "randomstring";
 
 describe("Components/MovieCard", () => {
   it("Should use div as default container.", () => {
@@ -19,6 +20,13 @@ describe("Components/MovieCard", () => {
     expect(
       document.querySelector("section[data-testid='movie-card']")
     ).toBeVisible();
+  });
+
+  it("Should be able to pass in className.", () => {
+    const className = random();
+    render(<MovieCard movie={mockMovie} className={className} />);
+
+    expect(screen.getByTestId("movie-card")).toHaveClass(className);
   });
 
   it("Should render a link to movie details page.", () => {
