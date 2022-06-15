@@ -1,11 +1,14 @@
 import React from "react";
 import "../../styles/globals.css";
 import { AppProps } from "next/app";
+import PageLayout from "@Components/PageLayout";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <React.StrictMode>
-      <Component {...pageProps} />
+      <PageLayout>
+        <Component {...pageProps} />
+      </PageLayout>
     </React.StrictMode>
   );
 }
