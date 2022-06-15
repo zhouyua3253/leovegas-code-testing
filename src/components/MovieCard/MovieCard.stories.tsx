@@ -28,4 +28,5 @@ Default.args = {
     vote_average: 6.9,
     vote_count: 1740,
   },
+  className: "w-80",
 };

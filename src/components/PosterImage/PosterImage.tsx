@@ -1,5 +1,6 @@
 import React from "react";
 import Image, { ImageProps } from "next/image";
+import { ImageLoaderProps } from "next/dist/client/image";
 
 export interface PosterImageProps extends ImageProps {
   /**
@@ -26,7 +27,16 @@ export default function PosterImage({
       aria-label={alt}
       width={width}
       height={height}
+      loader={imageLoader}
       {...rest}
     />
   );
+}
+
+function imageLoader({ src, width }: ImageLoaderProps) {
+  if (src.startsWith("http")) {
+    return src;
+  }
+
+  return `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${width}${src}`;
 }
