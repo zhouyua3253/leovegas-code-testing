@@ -11,8 +11,8 @@ describe("Components/PageLayout", () => {
       </PageLayout>
     );
 
-    expect(document.querySelector("header")).toBeInTheDocument();
-    expect(document.querySelector("main")).toBeInTheDocument();
-    expect(document.querySelector("footer")).toBeInTheDocument();
+    expect(document.querySelector("header")).toBeVisible();
+    expect(document.querySelector("main")).toBeVisible();
+    expect(document.querySelector("footer")).toBeVisible();
   });
 });

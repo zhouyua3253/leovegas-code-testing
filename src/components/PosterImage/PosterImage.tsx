@@ -16,10 +16,6 @@ export default function PosterImage({
   height = 750,
   ...rest
 }: PosterImageProps) {
-  if (!src.startsWith("http")) {
-    src = `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${src}`;
-  }
-
   return (
     <Image
       src={src}
@@ -33,10 +29,10 @@ export default function PosterImage({
   );
 }
 
-function imageLoader({ src, width }: ImageLoaderProps) {
+function imageLoader({ src }: ImageLoaderProps) {
   if (src.startsWith("http")) {
     return src;
   }
 
-  return `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${width}${src}`;
+  return `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${src}`;
 }

@@ -30,7 +30,11 @@ export default function MovieCard({
   const Container = as;
 
   return (
-    <Container className={clsx("max-w-screen-sm", className)} {...rest}>
+    <Container
+      className={clsx("max-w-screen-sm", className)}
+      data-testid="movie-card"
+      {...rest}
+    >
       <Link href={`/movie/${id}`} passHref={true}>
         <a>
           {poster_path && (
