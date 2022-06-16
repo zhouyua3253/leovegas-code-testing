@@ -1,17 +1,16 @@
 import Axios, { AxiosResponse } from "axios";
-import { Endpoints } from "@Constants/endpoints";
 
 export const axios = Axios.create({
-  baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
+  baseURL: process.env.SERVER_URL,
   timeout: 10 * 1000,
   responseType: "json",
   headers: {
-    Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
+    Authorization: `Bearer ${process.env.API_KEY}`,
     "Content-Type": "application/json;charset=utf-8",
   },
 });
 
-export async function axiosGet<T>(endpoint: Endpoints): Promise<T> {
+export async function axiosGet<T>(endpoint: string): Promise<T> {
   try {
     const res: AxiosResponse<T> = await axios.get<T>(encodeURI(endpoint));
 
