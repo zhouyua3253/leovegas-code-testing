@@ -14,7 +14,6 @@ export default function HomePage({ movies }: HomePageProps) {
       <Head>
         <title>Movie Gallery</title>
         <meta name="description" content="Movie Gallery" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <ul

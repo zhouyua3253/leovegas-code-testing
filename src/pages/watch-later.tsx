@@ -2,15 +2,16 @@ import React from "react";
 import Head from "next/head";
 
 export default function WatchLaterPage() {
+  const title = "Movie Gallery - Watch Later";
+
   return (
     <>
       <Head>
-        <title>Movie Gallery</title>
-        <meta name="description" content="Movie Gallery" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>{title}</title>
+        <meta name="description" content={title} />
       </Head>
 
-      <div>WATCH LATER</div>
+      <div className="min-h-screen">WATCH LATER</div>
     </>
   );
 }
