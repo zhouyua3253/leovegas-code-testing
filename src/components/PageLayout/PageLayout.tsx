@@ -8,7 +8,10 @@ export default function PageLayout({ children }: { children: ReactNode }) {
 
       <main>{children}</main>
 
-      <footer>This is footer</footer>
+      <footer className="flex flex-col items-center p-10">
+        <p className="text-2xl font-semibold">Movie Gallery</p>
+        <p className="text-sm text-slate-500 mt-2">Created by Yumin</p>
+      </footer>
     </div>
   );
 }
