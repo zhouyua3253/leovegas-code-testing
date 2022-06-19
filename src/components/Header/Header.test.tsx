@@ -22,7 +22,7 @@ describe("Components/Header", () => {
     render(<Header />);
 
     const watchLaterPageLink = screen.getByTestId("watch-later-page-link");
-    expect(watchLaterPageLink).toHaveAttribute("href", "/watch-later");
+    expect(watchLaterPageLink).toHaveAttribute("href", "/watch-list");
     expect(watchLaterPageLink).toBeVisible();
   });
 });

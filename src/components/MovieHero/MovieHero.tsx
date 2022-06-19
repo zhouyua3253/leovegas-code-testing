@@ -4,6 +4,8 @@ import clsx from "clsx";
 import PosterImage from "@Components/PosterImage";
 import { formatRunTime } from "@Utils/formatRunTime/formatRunTime";
 import { Bookmark, Favorites } from "@Components/svgs";
+import { useAppDispatch, useAppSelector } from "@Hooks";
+import { favoriteActions, watchlistActions } from "@Actions";
 
 export interface MovieHeroProps {
   /**
@@ -16,6 +18,7 @@ export interface MovieHeroProps {
 
 export default function MovieHero({ movie, className }: MovieHeroProps) {
   const {
+    id,
     poster_path,
     title,
     release_date,
@@ -28,6 +31,65 @@ export default function MovieHero({ movie, className }: MovieHeroProps) {
   const formattedDate = release_date.substring(0, 4);
   const genreString = genres.map(({ name }) => name).join(", ");
   const runTimeString = formatRunTime(runtime);
+
+  const dispatch = useAppDispatch();
+
+  const { isInFavorite, isInWatchlist } = useAppSelector<{
+    isInFavorite: boolean;
+    isInWatchlist: boolean;
+  }>((state) => {
+    const favoriteMovies = state.favorites.movies;
+    const isInFavorite = favoriteMovies.some((movieId) => id === movieId);
+
+    const watchlistMovies = state.watchlist.movies;
+    const isInWatchlist = watchlistMovies.some((movieId) => id === movieId);
+
+    return { isInFavorite, isInWatchlist };
+  });
+
+  function onClickFavoriteButton() {
+    if (isInFavorite) {
+      dispatch(favoriteActions.removeFromFavorites({ id }));
+    } else {
+      dispatch(favoriteActions.addToFavorites({ id }));
+    }
+  }
+
+  function onClickWatchLaterButton() {
+    if (isInWatchlist) {
+      dispatch(watchlistActions.removeFromWatchlist({ id }));
+    } else {
+      dispatch(watchlistActions.addToWatchlist({ id }));
+    }
+  }
+
+  function ActionButtons() {
+    return (
+      <div className="mt-5 md:mt-6 flex items-center">
+        <IconButton text="Mark as favorite" onClick={onClickFavoriteButton}>
+          <Favorites
+            width={36}
+            height={36}
+            fill={isInFavorite ? "red" : "#555"}
+            aria-label="Mark as favorite"
+          />
+        </IconButton>
+
+        <IconButton
+          text="Add to watchlist"
+          className="ml-5"
+          onClick={onClickWatchLaterButton}
+        >
+          <Bookmark
+            width={30}
+            height={30}
+            fill={isInWatchlist ? "red" : "#555"}
+            aria-label="Add to watchlist"
+          />
+        </IconButton>
+      </div>
+    );
+  }
 
   return (
     <section
@@ -59,15 +121,7 @@ export default function MovieHero({ movie, className }: MovieHeroProps) {
         </h4>
         <p className="text-slate-700">{overview}</p>
 
-        <div className="mt-5 md:mt-6 flex items-center">
-          <IconButton text="Mark as favorite">
-            <Favorites width={36} height={36} aria-label="Mark as favorite" />
-          </IconButton>
-
-          <IconButton text="Add to watchlist" className="ml-5">
-            <Bookmark width={30} height={30} aria-label="Add to watchlist" />
-          </IconButton>
-        </div>
+        <ActionButtons />
       </div>
     </section>
   );
@@ -80,14 +134,13 @@ interface IconButtonProps extends HTMLAttributes<HTMLButtonElement> {
 
 function IconButton({ children, onClick, text, className }: IconButtonProps) {
   return (
-    <button onClick={onClick} className={clsx("flex items-center", className)}>
+    <button
+      aria-label={text}
+      onClick={onClick}
+      className={clsx("flex items-center", className)}
+    >
       {children}
-      <span
-        className="ml-1 text-sm text-slate-600 font-medium"
-        aria-label={text}
-      >
-        {text}
-      </span>
+      <span className="ml-1 text-sm text-slate-600 font-medium">{text}</span>
     </button>
   );
 }
