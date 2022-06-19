@@ -14,3 +14,10 @@ export interface MovieModel {
   vote_count: number;
   genre_ids: Array<number>;
 }
+
+export interface MovieDetailsModel extends MovieModel {
+  status: string;
+  tagline: string;
+  genres: Array<{ id: number; name: string }>;
+  runtime: number;
+}

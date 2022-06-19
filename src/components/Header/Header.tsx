@@ -12,9 +12,9 @@ export default function Header() {
         </a>
       </Link>
 
-      <Link href="/watch-later">
+      <Link href="/watch-list">
         <a data-testid="watch-later-page-link">
-          <span className="underline text-slate-500">Watch later</span>
+          <span className="underline text-slate-500">Watch List</span>
         </a>
       </Link>
     </header>
