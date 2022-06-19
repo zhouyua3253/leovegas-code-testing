@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 
-export default function WatchLaterPage() {
+export default function WatchListPage() {
   const title = "Movie Gallery - Watch Later";
 
   return (
@@ -11,7 +11,7 @@ export default function WatchLaterPage() {
         <meta name="description" content={title} />
       </Head>
 
-      <div className="min-h-screen">WATCH LATER</div>
+      <div className="min-h-screen">WATCH LIST</div>
     </>
   );
 }
