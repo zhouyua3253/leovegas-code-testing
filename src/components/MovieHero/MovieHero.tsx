@@ -1,8 +1,9 @@
-import React from "react";
+import React, { HTMLAttributes, ReactNode } from "react";
 import { MovieDetailsModel } from "@Models/movieModel";
 import clsx from "clsx";
 import PosterImage from "@Components/PosterImage";
 import { formatRunTime } from "@Utils/formatRunTime/formatRunTime";
+import { Bookmark, Favorites } from "@Components/svgs";
 
 export interface MovieHeroProps {
   /**
@@ -57,7 +58,36 @@ export default function MovieHero({ movie, className }: MovieHeroProps) {
           Overview
         </h4>
         <p className="text-slate-700">{overview}</p>
+
+        <div className="mt-5 md:mt-6 flex items-center">
+          <IconButton text="Mark as favorite">
+            <Favorites width={36} height={36} aria-label="Mark as favorite" />
+          </IconButton>
+
+          <IconButton text="Add to watchlist" className="ml-5">
+            <Bookmark width={30} height={30} aria-label="Add to watchlist" />
+          </IconButton>
+        </div>
       </div>
     </section>
+  );
+}
+
+interface IconButtonProps extends HTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+  text: string;
+}
+
+function IconButton({ children, onClick, text, className }: IconButtonProps) {
+  return (
+    <button onClick={onClick} className={clsx("flex items-center", className)}>
+      {children}
+      <span
+        className="ml-1 text-sm text-slate-600 font-medium"
+        aria-label={text}
+      >
+        {text}
+      </span>
+    </button>
   );
 }
