@@ -2,7 +2,7 @@ import React from "react";
 import { MovieDetailsModel } from "@Models/movieModel";
 import { GetServerSideProps } from "next";
 import { getMovieById } from "@Services/movieServices";
-import MovieHero from "@Components/MovieHero/MovieHero";
+import MovieHero from "@Components/MovieHero";
 
 interface MovieDetailsPageProps {
   movie: MovieDetailsModel;
@@ -10,9 +10,9 @@ interface MovieDetailsPageProps {
 
 export default function MovieDetailsPage({ movie }: MovieDetailsPageProps) {
   return (
-    <div>
+    <>
       <MovieHero movie={movie} />
-    </div>
+    </>
   );
 }
 

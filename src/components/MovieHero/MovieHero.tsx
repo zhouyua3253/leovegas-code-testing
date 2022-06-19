@@ -30,15 +30,18 @@ export default function MovieHero({ movie, className }: MovieHeroProps) {
 
   return (
     <section
-      className={clsx("flex p-4 md:p-10 bg-slate-100 rounded-3xl", className)}
+      className={clsx(
+        "flex flex-col md:flex-row md:p-10 md:bg-slate-100 rounded-3xl",
+        className
+      )}
     >
       {poster_path && (
-        <div className="max-w-xs">
+        <div className="shrink-0 md:w-72">
           <PosterImage src={poster_path} alt={title} className="rounded-xl" />
         </div>
       )}
 
-      <div className="md:ml-14 flex flex-col justify-center">
+      <div className="mt-4 md:mt-0 md:ml-14 flex flex-col justify-center">
         <h1 className="text-4xl font-semibold" aria-label={title}>
           {title}
           <span className="font-normal text-slate-500 pl-3">

@@ -12,8 +12,8 @@ export interface PosterImageProps extends ImageProps {
 export default function PosterImage({
   src,
   alt,
-  width = 500,
-  height = 750,
+  width = 600,
+  height = 900,
   ...rest
 }: PosterImageProps) {
   return (
